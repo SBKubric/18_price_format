@@ -2,7 +2,8 @@
 
 ## Description
 
-This tiny script designed for formatting price string from pattern `1234.1234` to `1 234.12`
+This tiny script designed for formatting price string, integer or float value from pattern
+`1234.1234` to `1 234.12`. Returns a string.
 
 ## Installation
 
@@ -24,7 +25,7 @@ To check them, just run `python3 test.py`.
 
 ## Example
 
-Example of CIL:
+Example of CLI:
 
 ```
 python3 format_price.py 323452436245.5000

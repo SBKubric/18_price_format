@@ -11,20 +11,19 @@ def parse_args():
 
 def format_price(price):
     price_pattern = r"\d+([.,])?\d*$"
-    if not isinstance(price, str):
-        raise TypeError('The price should be type of string.')
+    price = str(price)
     if re.match(price_pattern, price) is None:
-        raise ValueError('String has wrong pattern.')
-    price.replace(',', '.')
-    price_parts = price.split('.')
-    int_part_price = int(price_parts[0])
+        raise ValueError('Price has wrong pattern.')
+    price = price.replace(',', '.')
+    int_part_price = int(price.split('.')[0])
     float_part_price = float(price) - int_part_price
-    formatted_int = '{:,}'.format(int_part_price).replace(',', ' ')
-    formatted_float = '{:.2f}'.format(float_part_price)[1:]
-    if float(price).is_integer():
+    formatted_float = '{:.2f}'.format(float_part_price)
+    float_part_rounded = 1 if formatted_float == '1.00' else 0
+    formatted_int = '{:,}'.format(int_part_price + float_part_rounded).replace(',', ' ')
+    if float(formatted_float).is_integer():
         return formatted_int
     else:
-        return '{}{}'.format(formatted_int, formatted_float)
+        return '{}{}'.format(formatted_int, formatted_float[1:])
 
 
 if __name__ == '__main__':

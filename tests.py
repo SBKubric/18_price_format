@@ -21,6 +21,12 @@ class TestPriceFormatting(unittest.TestCase):
         with self.assertRaises(ValueError):
             format_price('Bad value')
 
+    def test_float_value(self):
+        self.assertEqual(format_price(1.9999), '2')
+
+    def test_int_value(self):
+        self.assertEqual(format_price(2), '2')
+
     def test_bool_value(self):
         with self.assertRaises(ValueError):
             format_price(True)
